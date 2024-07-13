@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Entreprises</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
+</head>
+<body>
+<div>
+    <header th:replace="template1::navbar"></header>
+    <table class="table">
+        <tr>
+            <th scope="col">Code</th>
+            <th scope="col">Nom de Societé</th>
+            <th scope="col">Raison Sociale</th>
+            <th scope="col">Email</th>
+        </tr>
+        <tr th:each="e:${entrepriseList}">
+            <td th:text="${e.code}"></td>
+            <td th:text="${e.nomSociete}"></td>
+            <td th:text="${e.raisonSociale}"></td>
+            <td th:text="${e.email}"></td>
+        </tr>
+    </table>
+</div>
+<footer th:replace="template1::footer"></footer>
+</body>
+</html>
