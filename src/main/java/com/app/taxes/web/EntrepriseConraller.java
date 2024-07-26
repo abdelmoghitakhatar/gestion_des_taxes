@@ -1,4 +1,4 @@
-package com.app.taxes.dao.web;
+package com.app.taxes.web;
 
 public class EntrepriseConraller {
 }

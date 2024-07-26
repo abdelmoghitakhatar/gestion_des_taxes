@@ -7,22 +7,47 @@
     <link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
 </head>
 <body>
-<div>
-    <header th:replace="template1::navbar"></header>
-    <table class="table">
-        <tr>
-            <th scope="col">Code</th>
-            <th scope="col">Nom de Societé</th>
-            <th scope="col">Raison Sociale</th>
-            <th scope="col">Email</th>
-        </tr>
-        <tr th:each="e:${entrepriseList}">
-            <td th:text="${e.code}"></td>
-            <td th:text="${e.nomSociete}"></td>
-            <td th:text="${e.raisonSociale}"></td>
-            <td th:text="${e.email}"></td>
-        </tr>
-    </table>
+<header th:replace="template1::navbar"></header>
+<div class="container mt-3">
+    <div class="card">
+        <div class="card-header">
+            <div class="container-fluid d-flex justify-content-between">
+                <p>List des Entreprises</p>
+                <form th:action="@{/entreprises}">
+                    <span>Chercher le Nom</span>
+                    <input class="border border-info rounded" type="text" name="motCle" id="motCle">
+                    <button type="submit" class="rounded border-0 btn-info">Chercher</button>
+                </form>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <tr>
+                    <th scope="col">Code</th>
+                    <th scope="col">Nom de Societé</th>
+                    <th scope="col">Raison Sociale</th>
+                    <th scope="col">Email</th>
+                </tr>
+                <tr th:each="e:${entrepriseList}">
+                    <td th:text="${e.code}"></td>
+                    <td th:text="${e.nomSociete}"></td>
+                    <td th:text="${e.raisonSociale}"></td>
+                    <td th:text="${e.email}"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="card-footer">
+            <ul class="nav">
+                <li class="nav-item" th:each="p, stat:${pages}">
+                    <a
+                        th:class="${currentPage==stat.index}?'nav-link text-dark bg-primary bg-opacity-25 rounded':'nav-link'"
+                        th:text="${stat.count}"
+                        th:href="@{/entreprises(page=${stat.index}, motCle=${motCle})}"
+                    ></a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
 <footer th:replace="template1::footer"></footer>
 </body>

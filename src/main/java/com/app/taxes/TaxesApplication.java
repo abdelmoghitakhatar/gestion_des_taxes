@@ -47,5 +47,23 @@ public class TaxesApplication implements CommandLineRunner {
         Taxe t4 = taxeRepository.save(
                 new IR("ir2", new Date(), 4000, e1)
         );
+        Entreprise e3 = entrepriseRepository.save(
+                new Entreprise("email3", "nom3", "raison3")
+        );
+        Entreprise e4 = entrepriseRepository.save(
+                new Entreprise("email4", "nom4", "raison4")
+        );
+        Taxe t5 = taxeRepository.save(
+                new TVA("tva1", new Date(), 1000, e3)
+        );
+        Taxe t6 = taxeRepository.save(
+                new TVA("tva2", new Date(), 2000, e4)
+        );
+        Taxe t7 = taxeRepository.save(
+                new IR("ir1", new Date(), 3000, e4)
+        );
+        Taxe t8 = taxeRepository.save(
+                new IR("ir2", new Date(), 4000, e3)
+        );
     }
 }
