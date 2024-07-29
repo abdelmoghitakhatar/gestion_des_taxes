@@ -7,17 +7,20 @@
     <link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
 </head>
 <body>
-<header th:replace="template1::navbar"></header>
+<header th:replace="~{template1::navbar}"></header>
 <div class="container mt-3">
     <div class="card">
         <div class="card-header">
             <div class="container-fluid d-flex justify-content-between">
-                <p>List des Entreprises</p>
+                <p class="m-0">List des Entreprises</p>
                 <form th:action="@{/entreprises}">
                     <span>Chercher le Nom</span>
                     <input class="border border-info rounded" type="text" name="motCle" id="motCle">
                     <button type="submit" class="rounded border-0 btn-info">Chercher</button>
                 </form>
+                <div>
+                    <a class="btn btn-outline-secondary py-0" aria-current="page" th:href="@{/createEntreprise}">Ajouter</a>
+                </div>
             </div>
         </div>
         <div class="card-body">
@@ -27,12 +30,16 @@
                     <th scope="col">Nom de Societé</th>
                     <th scope="col">Raison Sociale</th>
                     <th scope="col">Email</th>
+                    <th scope="col"></th>
                 </tr>
                 <tr th:each="e:${entrepriseList}">
                     <td th:text="${e.code}"></td>
                     <td th:text="${e.nomSociete}"></td>
                     <td th:text="${e.raisonSociale}"></td>
                     <td th:text="${e.email}"></td>
+                    <td>
+                        <a th:href="@{/taxes(code=${e.code})}">Taxes</a>
+                    </td>
                 </tr>
             </table>
         </div>
@@ -49,6 +56,6 @@
         </div>
     </div>
 </div>
-<footer th:replace="template1::footer"></footer>
+<footer th:replace="~{template1::footer}"></footer>
 </body>
 </html>

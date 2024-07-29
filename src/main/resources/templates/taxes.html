@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Entreprises</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
+</head>
+<body>
+<header th:replace="~{template1::navbar}"></header>
+<div class="container mt-3">
+    <div class="card">
+        <div class="card-header">
+            <div class="container-fluid d-flex justify-content-between">
+                <p class="m-0">List des Entreprises</p>
+                <form th:action="@{/taxes}" id="form" class="d-flex flex-row">
+                    <span>Entreprise</span>
+                    <select
+                        name="code"
+                        class="form-select py-0 ms-2"
+                        aria-label="Default select example"
+                        onchange="document.getElementById('form').submit()"
+                    >
+                        <option value="" class="text-muted">Select All Taxes...</option>
+                        <option
+                            th:each="e:${entreprises}"
+                            th:value="${e.code}"
+                            th:text="${e.nomSociete}"
+                            th:selected="${code == e.code ? true : false}"
+                        ></option>
+                    </select>
+                </form>
+                <div hidden>
+                    <a class="btn btn-outline-secondary py-0" aria-current="page" th:href="@{/entreprises}">Ajouter</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Date de Taxe</th>
+                    <th scope="col">Montant</th>
+                    <th scope="col">Type</th>
+                </tr>
+                <tr th:each="t:${taxes}">
+                    <td th:text="${t.id}"></td>
+                    <td th:text="${t.titre}"></td>
+                    <td th:text="${t.dateTaxe.toString().substring(0, 10).replace('-', '/')}"></td>
+                    <td th:text="${t.montant}"></td>
+                    <td th:text="${t.class.simpleName}"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="card-footer">
+            <ul class="nav">
+                <li class="nav-item" th:each="p, stat:${pages}">
+                    <a
+                            th:class="${currentPage==stat.index}?'nav-link text-dark bg-primary bg-opacity-25 rounded':'nav-link'"
+                            th:text="${stat.count}"
+                            th:href="@{/taxes(page=${stat.index}, code=${code})}"
+                    ></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<footer th:replace="~{template1::footer}"></footer>
+</body>
+</html>

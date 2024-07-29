@@ -1,6 +1,9 @@
 package com.app.taxes.Domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.util.Collection;
 
@@ -11,10 +14,14 @@ public class Entreprise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long code;
 
+    @Email
+    @Size(min = 6, message = "la taille doit être 6 ou plus")
     private String email;
 
+    @Size(min = 3, max = 30)
     private String nomSociete;
 
+    @Size(min = 3, max = 30)
     private String raisonSociale;
 
     @OneToMany(mappedBy = "entreprise", fetch = FetchType.LAZY)

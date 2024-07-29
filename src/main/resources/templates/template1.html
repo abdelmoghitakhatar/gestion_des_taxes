@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Taxes</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
-    <link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
-</head>
-<body>
-
+<!-- navbar header template -->
     <header th:fragment="navbar">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid px-5">
@@ -18,7 +9,7 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" th:href="@{/entreprises.html}">Entreprises</a>
+                        <a class="nav-link" aria-current="page" th:href="@{/entreprises}">Entreprises</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" th:href="@{/taxes}">Taxes</a>
@@ -28,8 +19,10 @@
         </div>
     </nav>
     </header>
-    <footer class="blockquote-footer" th:fragment="footer">
-        <div class="mx-auto">&copy; 2024 | abdelmoghitakhatar</div>
+
+
+<!-- footer template -->
+    <footer class="blockquote-footer container" th:fragment="footer">
+        <hr>
+        <div class="">&copy; 2024 | abdelmoghitakhatar</div>
     </footer>
-</body>
-</html>
