@@ -5,16 +5,16 @@
     <title>Entreprises</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
 </head>
-<body>
+<body class="bg-black" style="min-height: 100vh">
 <header th:replace="~{template1::navbar}"></header>
 <div class="container mt-3">
-    <div class="card">
+    <div class="card border-danger bg-dark">
         <div class="card-header">
-            <div class="container-fluid d-flex justify-content-between">
+            <div class="container-fluid d-flex justify-content-between" style="color: lightgray">
                 <p class="m-0">List des Entreprises</p>
                 <form th:action="@{/entreprises}">
                     <span>Chercher le Nom</span>
-                    <input class="border border-info rounded" type="text" name="motCle" id="motCle">
+                    <input class="border border-info rounded bg-light bg-opacity-10" type="text" name="motCle" id="motCle">
                     <button type="submit" class="rounded border-0 btn-info">Chercher</button>
                 </form>
                 <div>
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table">
+            <table class="table" style="color: #00FF005F;">
                 <tr>
                     <th scope="col">Code</th>
                     <th scope="col">Nom de Societé</th>
@@ -46,7 +46,7 @@
             <ul class="nav">
                 <li class="nav-item" th:each="p, stat:${pages}">
                     <a
-                        th:class="${currentPage==stat.index}?'nav-link text-dark bg-primary bg-opacity-25 rounded':'nav-link'"
+                        th:class="${currentPage==stat.index}?'nav-link text-dark bg-success bg-opacity-25 rounded':'nav-link'"
                         th:text="${stat.count}"
                         th:href="@{/entreprises(page=${stat.index}, motCle=${motCle})}"
                     ></a>
