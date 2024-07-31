@@ -7,12 +7,19 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav ms-auto me-auto">
+                <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" th:href="@{/entreprises}">Entreprises</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" th:href="@{/taxes}">Taxes</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto me-0">
+                    <li class="nav-item">
+                        <form th:action="@{/logout}" method="post">
+                            <input class="btn btn-outline-secondary text-white-50" type="submit" th:value="'Logout '+${#authentication.name}"/>
+                        </form>
                     </li>
                 </ul>
             </div>

@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Entreprises</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
-    <link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
 </head>
 <body>
 <header th:replace="~{template1::navbar}"></header>
@@ -12,7 +11,7 @@
     <div class="card">
         <div class="card-header">
             <div class="container-fluid d-flex justify-content-between">
-                <p class="m-0">List des Entreprises</p>
+                <p class="m-0">List des Taxes</p>
                 <form th:action="@{/taxes}" id="form" class="d-flex flex-row">
                     <span>Entreprise</span>
                     <select
