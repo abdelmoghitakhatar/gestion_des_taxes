@@ -4,32 +4,40 @@ import com.app.taxes.Domain.Entreprise;
 import com.app.taxes.Domain.IR;
 import com.app.taxes.Domain.TVA;
 import com.app.taxes.Domain.Taxe;
+import com.app.taxes.Domain.sec.UserEntity;
 import com.app.taxes.dao.EntrepriseRepository;
 import com.app.taxes.dao.TaxeRepository;
+import com.app.taxes.dao.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Date;
 
 @SpringBootApplication
-//public class TaxesApplication implements CommandLineRunner {
-public class TaxesApplication  {
+public class TaxesApplication implements CommandLineRunner {
+//public class TaxesApplication  {
 
-    private final EntrepriseRepository entrepriseRepository;
-    private final TaxeRepository taxeRepository;
-
-    public TaxesApplication(EntrepriseRepository entrepriseRepository, TaxeRepository taxeRepository) {
-        this.entrepriseRepository = entrepriseRepository;
-        this.taxeRepository = taxeRepository;
-    }
+//    private final PasswordEncoder passwordEncoder;
+//
+//    private final EntrepriseRepository entrepriseRepository;
+//    private final TaxeRepository taxeRepository;
+//    private final UserRepository userRepository;
+//
+//    public TaxesApplication(PasswordEncoder passwordEncoder, EntrepriseRepository entrepriseRepository, TaxeRepository taxeRepository, UserRepository userRepository) {
+//        this.passwordEncoder = passwordEncoder;
+//        this.entrepriseRepository = entrepriseRepository;
+//        this.taxeRepository = taxeRepository;
+//        this.userRepository = userRepository;
+//    }
 
     public static void main(String[] args) {
         SpringApplication.run(TaxesApplication.class, args);
     }
 
-//    @Override
-//    public void run(String... args) throws Exception {
+    @Override
+    public void run(String... args) throws Exception {
 //        Entreprise e1 = entrepriseRepository.save(
 //                new Entreprise("email1", "nom1", "raison1")
 //        );
@@ -66,5 +74,6 @@ public class TaxesApplication  {
 //        Taxe t8 = taxeRepository.save(
 //                new IR("ir2", new Date(), 4000, e3)
 //        );
-//    }
+//        userRepository.save(new UserEntity("admin", passwordEncoder.encode("admin")));
+    }
 }
