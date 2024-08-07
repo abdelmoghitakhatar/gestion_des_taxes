@@ -49,6 +49,6 @@ public class TaxeController {
         model.addAttribute("taxes", taxes.stream().toList());
         model.addAttribute("code", code);
         model.addAttribute("currentPage", page);
-        return "taxes";
+        return "test_taxes";
     }
 }

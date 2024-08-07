@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>Entreprises</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="/css/login.css" th:href="@{/css/test_entreprises.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="bg-black" style="min-height: 100vh">
+<section></section>
+<header th:replace="~{template1::navbar}"></header>
+<div class="container mt-3">
+    <div class="card border-danger bg-dark">
+        <div class="card-header">
+            <div class="container-fluid d-flex justify-content-between" style="color: lightgray">
+                <p class="m-0">List des Entreprises</p>
+                <form th:action="@{/entreprises}">
+                    <span class="me-2">Chercher le Nom</span>
+                    <input class="border border-dark rounded bg-light bg-opacity-10" type="text" name="motCle" id="motCle">
+                    <button type="submit" class="rounded border-0 btn-secondary">Chercher</button>
+                </form>
+                <div sec:authorize="${hasRole('ROLE_ADMIN')}">
+                    <a class="btn btn-outline-secondary py-0" aria-current="page" th:href="@{/createEntreprise}">Ajouter</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <tr class="text-white-50">
+                    <th scope="col">Code</th>
+                    <th scope="col">Nom de Societé</th>
+                    <th scope="col">Raison Sociale</th>
+                    <th scope="col">Email</th>
+                    <th scope="col"></th>
+                </tr>
+                <tr th:each="e:${entrepriseList}" class="text-white">
+                    <td th:text="${e.code}"></td>
+                    <td th:text="${e.nomSociete}"></td>
+                    <td th:text="${e.raisonSociale}"></td>
+                    <td th:text="${e.email}"></td>
+                    <td>
+                        <a th:href="@{/taxes(code=${e.code})}"><i class="fas fa-link"></i> Taxes</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="card-footer">
+            <ul class="nav">
+                <li class="nav-item" th:each="p, stat:${pages}">
+                    <a
+                            th:class="${currentPage==stat.index}?'nav-link text-dark bg-primary bg-opacity-25 rounded':'nav-link'"
+                            th:text="${stat.count}"
+                            th:href="@{/entreprises(page=${stat.index}, motCle=${motCle})}"
+                    ></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<footer th:replace="~{template1::footer}"></footer>
+</body>
+</html>

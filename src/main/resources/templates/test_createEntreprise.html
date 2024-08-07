@@ -4,33 +4,35 @@
     <meta charset="UTF-8">
     <title>Add Entreprise</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="/css/login.css" th:href="@{/css/test_entreprises.css}">
 </head>
-<body>
+<body class="bg-black" style="min-height: 100vh">
+<section></section>
 <header th:replace="~{template1::navbar}"></header>
 <div class="container mt-3">
-    <div class="card">
+    <div class="card border-danger bg-dark">
         <div class="card-header">
-            <div class="container-fluid d-flex justify-content-between">
+            <div class="container-fluid d-flex justify-content-between" style="color: lightgray">
                 <p class="m-0">Ajouter une Entreprise</p>
             </div>
         </div>
-        <div class="card-body">
+        <div class="card-body text-light">
             <form th:action="@{/createEntreprise}" method="post">
                 <div class="mb-3">
                     <label class="form-label">Nom de l'Entreprise :</label>
                     <input
-                        class="form-control"
-                        type="text"
-                        name="nomSociete"
-                        minlength="3"
-                        maxlength="30"
-                        th:value="${entreprise.nomSociete}" />
+                            class="form-control border border-dark rounded bg-light bg-opacity-10"
+                            type="text"
+                            name="nomSociete"
+                            minlength="3"
+                            maxlength="30"
+                            th:value="${entreprise.nomSociete}" />
                     <small class="text-danger" th:errors="${entreprise.nomSociete}"></small>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Raison Sociale :</label>
                     <input
-                            class="form-control"
+                            class="form-control border border-dark rounded bg-light bg-opacity-10"
                             type="text"
                             name="raisonSociale"
                             minlength="3"
@@ -41,14 +43,16 @@
                 <div class="mb-3">
                     <label class="form-label">Email :</label>
                     <input
-                            class="form-control"
+                            class="form-control border border-dark rounded bg-light bg-opacity-10"
                             type="email"
                             name="email"
                             th:value="${entreprise.email}" />
                     <small class="text-danger" th:errors="${entreprise.email}"></small>
                 </div>
-                <a role="button" class="btn btn-secondary" href="/entreprises">Annuler</a>
-                <button type="submit" class="btn btn-primary">Sauvgarder</button>
+                <div class="d-flex justify-content-end">
+                    <a role="button" class="btn btn-danger" href="/entreprises">Annuler</a>
+                    <button type="submit" class="btn btn-success ms-3">Sauvgarder</button>
+                </div>
             </form>
         </div>
     </div>

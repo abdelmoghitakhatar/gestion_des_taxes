@@ -38,13 +38,13 @@ public class EntrepriseConraller {
         model.addAttribute("pages", pages);
         model.addAttribute("currentPage", page);
         model.addAttribute("motCle", motCle);
-        return "entreprises";
+        return "test_entreprises";
     }
 
     @GetMapping("/createEntreprise")
     public String creatEntreprise(Model model){
         model.addAttribute("entreprise", new Entreprise());
-        return "createEntreprise";
+        return "test_createEntreprise";
     }
 
     @PostMapping("/createEntreprise")
