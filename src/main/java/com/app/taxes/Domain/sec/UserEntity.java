@@ -15,10 +15,15 @@ public class UserEntity {
 
     private String password;
 
+    private String email;
+
     private boolean active = true;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<RoleEntity> roles;
+
+    @OneToMany(mappedBy = "user")
+    private Set<SecureToken> tokens;
 
     public UserEntity() {
     }
@@ -47,6 +52,14 @@ public class UserEntity {
         this.roles = roles;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -63,6 +76,14 @@ public class UserEntity {
         this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public boolean isActive() {
         return active;
     }
@@ -77,5 +98,13 @@ public class UserEntity {
 
     public void setRoles(Set<RoleEntity> roles) {
         this.roles = roles;
+    }
+
+    public Set<SecureToken> getTokens() {
+        return tokens;
+    }
+
+    public void setTokens(Set<SecureToken> tokens) {
+        this.tokens = tokens;
     }
 }
