@@ -42,7 +42,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                     .collect(Collectors.toList());
         }
         Collection<GrantedAuthority> collection = new ArrayList<>();
-        collection.add(new SimpleGrantedAuthority("ROLE_USER"));
+//        collection.add(new SimpleGrantedAuthority("ROLE_USER"));
         return collection;
 
     }

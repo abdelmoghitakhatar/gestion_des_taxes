@@ -1,8 +1,10 @@
 package com.app.taxes.service;
 
+import com.app.taxes.Domain.sec.UserEntity;
+
 public interface MailService {
 
-    void sendEmail(String email);
+    void sendEmail(UserEntity user);
 
-    String buildEmail();
+    String buildEmail(String confirmation);
 }

@@ -20,6 +20,23 @@ public class SecureToken {
     @ManyToOne
     private UserEntity user;
 
+    public SecureToken() {
+    }
+
+    public SecureToken(Long id, String token, LocalDateTime expiredAt, UserEntity user) {
+        this.id = id;
+        this.token = token;
+        this.expiredAt = expiredAt;
+        this.user = user;
+    }
+
+    public SecureToken(String token, LocalDateTime expiredAt, UserEntity user) {
+        this.id = null;
+        this.token = token;
+        this.expiredAt = expiredAt;
+        this.user = user;
+    }
+
     public Long getId() {
         return id;
     }

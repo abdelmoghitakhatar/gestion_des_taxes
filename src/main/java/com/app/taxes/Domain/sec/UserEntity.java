@@ -1,6 +1,9 @@
 package com.app.taxes.Domain.sec;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import org.hibernate.validator.constraints.Length;
 
 import java.util.Set;
 
@@ -13,16 +16,19 @@ public class UserEntity {
     @Column(unique = true)
     private String username;
 
+    @Length(min = 8, message = "The password must have at least {min} digits")
     private String password;
 
+    @Column(unique = true)
+    @Email(message = "This field must be an Email")
     private String email;
 
-    private boolean active = true;
+    private boolean active = false;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<RoleEntity> roles;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<SecureToken> tokens;
 
     public UserEntity() {

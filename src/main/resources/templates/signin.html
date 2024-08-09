@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Signup</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" href="/css/login.css" th:href="@{/css/login.css}">
 </head>
@@ -13,32 +13,47 @@
 
         <div class="content">
 
-            <h2>Log In</h2>
+            <h2>Sign up</h2>
 
-            <div th:if="${param.logout}" class="text-warning text-center"> You Logged out Successfully </div>
-
-            <form th:action="@{/login}" method="post" class="form">
+            <form th:action="@{/sign-in}" method="post" class="form" th:object="${user}">
                 <div class="inputBox">
 
-                    <input type="text" name="username" required> <i>Username</i>
+                    <input type="text" th:field="*{username}" required> <i>Username</i>
+                    <small
+                            class="text-danger"
+                            th:if="${#fields.hasErrors('username')}"
+                            th:errors="*{username}"
+                    ></small>
+                </div>
+
+                <div class="inputBox">
+
+                    <input type="email" th:field="*{email}" required> <i>Email</i>
+                    <small
+                            class="text-danger"
+                            th:if="${#fields.hasErrors('email')}"
+                            th:errors="*{email}"
+                    ></small>
+                </div>
+
+                <div class="inputBox">
+
+                    <input type="password" th:field="*{password}" min="8" required> <i>Password</i>
+                    <small
+                            class="text-danger"
+                            th:if="${#fields.hasErrors('password')}"
+                            th:errors="*{password}"
+                    ></small>
+
+                </div>
+
+                <div class="links">Already have an account? <a class="text-success" href="/login">Log In</a>
 
                 </div>
 
                 <div class="inputBox">
 
-                    <input type="password" name="password" required> <i>Password</i>
-
-                </div>
-
-                <div th:if="${param.error}" class="text-danger text-center"> Incorrect Username or Password </div>
-
-                <div class="links"> <a href="#" onclick="alert('I Dont Care 😜')">Forgot Password?</a><a class="text-success" href="sign-in">Signup</a>
-
-                </div>
-
-                <div class="inputBox">
-
-                    <input type="submit" value="Login">
+                    <input type="submit" value="Sign up">
 
                 </div>
 
